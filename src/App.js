@@ -1,24 +1,37 @@
-import logo from './logo.svg';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
-
+import EventPage from './pages/EventPage';
+import PromoVideo from './pages/PromoVideo';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import Login from './components/Login';
+import Register from './components/Register';
+import HomePage from './components/MainPage/HomePage';
+import Header from './components/MainPage/Header';
+import Footer from './components/MainPage/Footer';
+import Calender from './components/calender/Calender';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div>
+        <Header></Header>
+        <Switch>
+
+          <Route exact path='/' component={Login} />
+          <Route exact path='/register' component={Register} />
+          <Route exact path='/home' component={HomePage} />
+          <Route path="/promovideo">
+            <PromoVideo />
+          </Route>
+          <Route path="/event/:id" children={<EventPage />} />
+          <Route exact path='/calender' component={Calender} />
+
+        </Switch>
+
+
+      </div>
+    </Router>
+
+
   );
 }
 
